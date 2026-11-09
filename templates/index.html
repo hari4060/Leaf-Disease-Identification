@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Disease Detection</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for better styling -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-control-file {
+            padding: 10px;
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            background: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-control-file:hover {
+            background-color: #f1f3f5;
+        }
+
+        .btn-primary {
+            background-color: #6a82fb;
+            border-color: #6a82fb;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #fc5c7d;
+            border-color: #fc5c7d;
+        }
+
+        .text-center h3 {
+            font-weight: 600;
+            color: #28a745;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #28a745;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+        }
+
+        footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #6a82fb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">🌿 Leaf Disease Detection 🌿</h2>
+        
+        <!-- Image Upload Form -->
+        <form action="{{ url_for('classify') }}" method="POST" enctype="multipart/form-data" class="text-center mt-4">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" accept=".jpg,.jpeg,.png" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Classify</button>
+        </form>
+
+        <!-- Show the image and result after classification -->
+        {% if label %}
+        <div class="mt-5 text-center">
+            <h3>Prediction: {{ label }}</h3>
+            <h4>Affected Area: {{ affected_percentage }}%</h4>
+            <p>Control Measure: {{ control_measure }}</p>
+            <img src="{{ image_url }}" class="img-fluid" alt="Uploaded Image">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed by <a href="#">Hari Prakash</a></p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
